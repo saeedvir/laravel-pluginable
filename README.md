@@ -2,7 +2,7 @@
 
 An extensive Laravel plugin system that provides automatic registration of routes, controllers, services, views, and configurations for modular application development.
 
-![alt text](https://raw.githubusercontent.com/saeedvir/saeedvir/laravel-pluginable/blob/main/banner.jpeg?raw=true)
+![banner](https://raw.githubusercontent.com/saeedvir/laravel-pluginable/blob/main/banner.jpeg?raw=true)
 
 Laravel Pluginable Fork From "paramientos/laravel-plugin-system"
 
