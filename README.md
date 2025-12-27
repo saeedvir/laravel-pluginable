@@ -4,7 +4,9 @@ An extensive Laravel plugin system that provides automatic registration of route
 
 ![banner](https://raw.githubusercontent.com/saeedvir/laravel-pluginable/refs/heads/main/banner.jpeg?raw=true)
 
-Laravel Pluginable Fork From "paramientos/laravel-plugin-system"
+> [!NOTE]  
+> Laravel Pluginable Forked From [paramientos/laravel-plugin-system](https://github.com/paramientos/laravel-plugin-system)
+
 
 ## Features
 
