@@ -1,0 +1,55 @@
+{
+    "name": "saeedvir/laravel-pluginable",
+    "description": "An extensive Laravel plugin system that provides automatic registration of routes, controllers, services, views, and configurations for modular application development.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "saeedvir",
+            "email": "saeed.es91@gmail.com"
+        }
+    ],
+    "keywords": [
+        "laravel",
+        "plugin",
+        "system",
+        "modular",
+        "module",
+        "hexagonal",
+        "architecture",
+        "pluginable"
+    ],
+    "require": {
+        "php": "^8.1",
+        "illuminate/support": "^10.0|^11.0|^12.0",
+        "illuminate/console": "^10.0|^11.0|^12.0",
+        "illuminate/filesystem": "^10.0|^11.0|^12.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.0",
+        "orchestra/testbench": "^8.0|^9.0",
+        "laravel/pint": "^1.25"
+    },
+    "autoload": {
+        "psr-4": {
+            "SaeedVir\\LaravelPluginable\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SaeedVir\\LaravelPluginable\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "SaeedVir\\LaravelPluginable\\LaravelPluginableServiceProvider"
+            ],
+            "aliases": {
+                "Plugin": "SaeedVir\\LaravelPluginable\\Facades\\Plugin"
+            }
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
