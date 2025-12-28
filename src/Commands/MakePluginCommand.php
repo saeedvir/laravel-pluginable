@@ -19,7 +19,9 @@ class MakePluginCommand extends Command
                             {--view= : Create a view file}
                             {--route : Create a route file}
                             {--enum= : Create an enum file}
-                            {--trait= : Create a trait file}';
+                            {--trait= : Create a trait file}
+                            {--lang= : Create a language file}
+                            {--middleware= : Create a middleware class}';
 
     protected $description = 'Create a new plugin with all necessary directories and files';
 
@@ -35,7 +37,8 @@ class MakePluginCommand extends Command
             // Check if any component options are provided
             $hasComponentOptions = $this->option('command') || $this->option('controller') ||
                 $this->option('event') || $this->option('listener') ||
-                $this->option('view') || $this->option('enum') || $this->option('trait');
+                $this->option('view') || $this->option('enum') || $this->option('trait') ||
+                $this->option('lang') || $this->option('middleware');
 
             if (!$hasComponentOptions) {
                 $this->error("Plugin '{$pluginName}' already exists!");
@@ -90,6 +93,8 @@ class MakePluginCommand extends Command
             $pluginPath . '/Listeners',
             $pluginPath . '/Enums',
             $pluginPath . '/Concerns',
+            $pluginPath . '/Middleware',
+            $pluginPath . '/Lang',
         ];
 
         foreach ($directories as $directory) {
@@ -713,6 +718,59 @@ trait $traitName
         $this->line("Created trait: {$filePath}");
     }
 
+    protected function createMiddlewareFile(string $pluginPath, string $pluginName, string $middleware): void
+    {
+        $filePath = "{$pluginPath}/Middleware/{$middleware}.php";
+        $middlewareName = ucfirst($middleware);
+
+        if (File::exists($filePath)) {
+            $this->warn("Middleware file '{$middlewareName}' already exists in plugin '{$pluginName}'. Skipping...");
+            return;
+        }
+
+        $namespace = config('laravel-pluginable.plugin_namespace', 'App\\Plugins');
+
+        $content = "<?php
+
+namespace {$namespace}\\{$pluginName}\\Middleware;
+
+use Closure;
+use Illuminate\\Http\\Request;
+use Symfony\\Component\\HttpFoundation\\Response;
+
+class {$middlewareName}
+{
+    public function handle(Request \$request, Closure \$next): Response
+    {
+        return \$next(\$request);
+    }
+}
+";
+        File::put($filePath, $content);
+        $this->line("Created middleware: {$filePath}");
+    }
+
+    protected function createLangFile(string $pluginPath, string $pluginName, string $lang): void
+    {
+        $filePath = "{$pluginPath}/Lang/{$lang}.php";
+
+        if (File::exists($filePath)) {
+            $this->warn("Language file '{$lang}' already exists in plugin '{$pluginName}'. Skipping...");
+            return;
+        }
+
+        $content = "<?php
+
+return [
+    'welcome' => 'Welcome to {$pluginName} plugin',
+    'failed' => 'Action failed',
+    'success' => 'Action successful',
+];
+";
+        File::put($filePath, $content);
+        $this->line("Created lang: {$filePath}");
+    }
+
     protected function createAdditionalComponents(string $pluginPath, string $pluginName, string $viewType): void
     {
         $this->createPluginDirectories($pluginPath);
@@ -743,6 +801,14 @@ trait $traitName
 
         if ($this->option('trait')) {
             $this->createConcernFile($pluginPath, $pluginName, $this->option('trait'));
+        }
+
+        if ($this->option('lang')) {
+            $this->createLangFile($pluginPath, $pluginName, $this->option('lang'));
+        }
+
+        if ($this->option('middleware')) {
+            $this->createMiddlewareFile($pluginPath, $pluginName, $this->option('middleware'));
         }
     }
 

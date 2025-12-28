@@ -124,8 +124,14 @@ php artisan make:plugin MyAwesomePlugin --enum=Status
 # Create a trait within the plugin
 php artisan make:plugin MyAwesomePlugin --trait=Cacheable
 
+# Create a middleware within the plugin
+php artisan make:plugin MyAwesomePlugin --middleware=AdminMiddleware
+
+# Create a language file within the plugin
+php artisan make:plugin MyAwesomePlugin --lang=messages
+
 # Combine multiple components
-php artisan make:plugin MyAwesomePlugin --command=ProcessCommand --controller=ProcessController --event=ProcessedEvent --enum=Status --trait=Cacheable --route
+php artisan make:plugin MyAwesomePlugin --command=ProcessCommand --controller=ProcessController --event=ProcessedEvent --enum=Status --trait=Cacheable --middleware=AdminMiddleware --lang=messages --route
 ```
 
 ### Adding Components to Existing Plugins (v1.5)
@@ -137,7 +143,7 @@ You can add new components to existing plugins without recreating them:
 php artisan make:plugin ExistingPlugin --command=NewCommand
 
 # Add multiple components to existing plugin
-php artisan make:plugin ExistingPlugin --controller=ApiController --event=UserRegistered --enum=Status --trait=Cacheable --route
+php artisan make:plugin ExistingPlugin --controller=ApiController --event=UserRegistered --enum=Status --trait=Cacheable --middleware=AdminMiddleware --lang=messages --route
 
 # If component already exists, it will be skipped with a warning
 php artisan make:plugin ExistingPlugin --command=ExistingCommand
@@ -156,6 +162,10 @@ app/Plugins/MyAwesomePlugin/
 ├── Services/
 │   ├── MyAwesomePluginService.php      # Plugin service
 │   └── MyAwesomePluginServiceInterface.php # Service interface
+├── Middleware/                         # Generated middleware
+│   └── AdminMiddleware.php
+├── Lang/                               # Generated language files
+│   └── messages.php
 ├── Commands/                           # Generated commands (v1.5)
 │   └── ProcessDataCommand.php
 ├── Events/                             # Generated events (v1.5)
