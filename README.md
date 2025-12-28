@@ -2,6 +2,12 @@
 
 An extensive Laravel plugin system that provides automatic registration of routes, controllers, services, views, and configurations for modular application development.
 
+![banner](https://raw.githubusercontent.com/saeedvir/laravel-pluginable/refs/heads/main/banner.jpeg?raw=true)
+
+> [!NOTE]  
+> Laravel Pluginable Forked From [paramientos/laravel-plugin-system](https://github.com/paramientos/laravel-plugin-system)
+
+
 ## Features
 
 -  **Automatic Plugin Discovery** - Automatically scans and registers plugins
