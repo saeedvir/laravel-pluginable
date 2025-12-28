@@ -104,6 +104,8 @@ class PluginManagerTest extends TestCase
 
         $viewPaths = View::getFinder()->getPaths();
         $this->assertContains(str_replace('/', DIRECTORY_SEPARATOR, $viewsPath), array_map(function($p) { return str_replace('/', DIRECTORY_SEPARATOR, $p); }, $viewPaths));
+
+        $this->assertTrue(View::exists('plugins.TestPlugin::test'));
     }
 
     public function test_register_plugin_routes_with_default_prefix()
