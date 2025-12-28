@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Initial release of Laravel Plugin System
 - Comprehensive plugin architecture for Laravel applications
 
+## [2.1.0] - 2025-12-28
+
+### Added
+- **Plugin List Command**: Added `php artisan plugin:list` to view all plugins.
+- **Manifest Tracking**: Added support for tracking whether plugins are loaded from cache or scanned.
+
 ## [2.0.0] - 2024-03-20
 
 ### Added

@@ -156,6 +156,14 @@ php artisan make:plugin ExistingPlugin --command=ExistingCommand
 # Output: Command file 'ExistingCommand.php' already exists in plugin 'ExistingPlugin'. Skipping...
 ```
 
+### Listing Plugins
+
+Display all discovered plugins and their current status:
+
+```bash
+php artisan plugin:list
+```
+
 This creates the following structure:
 
 ```

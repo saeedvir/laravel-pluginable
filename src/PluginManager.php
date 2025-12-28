@@ -22,6 +22,8 @@ class PluginManager
     protected Application $app;
     
     protected array $manifest = [];
+    
+    protected string $manifestSource = 'Scanned';
 
     public function __construct(Application $app)
     {
@@ -55,6 +57,7 @@ class PluginManager
     {
         if (File::exists($this->manifestPath)) {
             $this->manifest = require $this->manifestPath;
+            $this->manifestSource = 'Cached';
             return;
         }
 
@@ -131,6 +134,11 @@ class PluginManager
         return $this->manifest; 
     }
     
+    public function getManifestSource(): string
+    {
+        return $this->manifestSource;
+    }
+    
     public function find(string $name): ?array
     {
         return $this->manifest[$name] ?? null;
@@ -149,6 +157,7 @@ class PluginManager
             Commands\MakePluginCommand::class,
             Commands\PluginCacheCommand::class,
             Commands\PluginClearCommand::class,
+            Commands\PluginListCommand::class,
         ];
     }
 

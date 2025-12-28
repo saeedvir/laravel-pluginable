@@ -11,6 +11,7 @@ use SaeedVir\LaravelPluginable\PluginManager;
  * @method static bool enabled(string $name)
  * @method static void registerHook(string $name, mixed $content)
  * @method static string renderHook(string $name)
+ * @method static string getManifestSource()
  *
  * @see \SaeedVir\LaravelPluginable\PluginManager
  */
