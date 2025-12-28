@@ -188,6 +188,7 @@ Route::get('/', function () {
     protected function createControllerFile(string $pluginPath, string $pluginName, ?string $controllerName = null): void
     {
         $namespace = config('laravel-pluginable.plugin_namespace', 'App\\Plugins');
+        $pluginNameLower = strtolower($pluginName);
 
         if ($controllerName) {
             if (str_ends_with($controllerName, 'Controller')) {
@@ -223,7 +224,7 @@ class {$controllerClass} extends Controller
 {
     public function index(): View
     {
-        return view('{$pluginName}::index', [
+        return view('plugins.{$pluginNameLower}::index', [
             'title' => '{$pluginName} index Page',
             'message' => 'Welcome to {$pluginName} plugin!'
         ]);
