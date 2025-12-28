@@ -239,7 +239,8 @@ class PluginManager
 
             if ($viewsPath) {
                 View::addLocation($viewsPath);
-                View::addNamespace("plugins.{$pluginName}", $viewsPath);
+                $pluginNameLower = strtolower($pluginName);
+                View::addNamespace("plugins.{$pluginNameLower}", $viewsPath);
 
                 if (config('laravel-pluginable.enable_volt_support', true) && class_exists('Livewire\\Volt\\Volt')) {
                     call_user_func(['Livewire\\Volt\\Volt', 'mount'], $viewsPath);
